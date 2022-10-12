@@ -1,0 +1,10 @@
+^F:\BFU\BFU_LABS_PM\LABA6\BUILD\CMAKEFILES\5B4C249D57F0AA2956EDDBFFECFB2712\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SF:/bfu/bfu_labs_pm/laba6 -BF:/bfu/bfu_labs_pm/laba6/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file F:/bfu/bfu_labs_pm/laba6/build/laba6.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
