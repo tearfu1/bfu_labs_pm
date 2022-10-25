@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 
-
+//Summ[2000-i-j-1]
 void multFunc(int &summ,char a[], char b[]) {
 	int tens = 1;
 	for (int i = 0; i < strlen(b); ++i) {
@@ -12,6 +12,7 @@ void multFunc(int &summ,char a[], char b[]) {
 		tens *= 10;
 	}
 }
+//Void printFunc
 int main() {
 	char a[1000];
 	char b[1000];
@@ -23,7 +24,7 @@ int main() {
 	std::cin >> a;
 	std::cin >> b;
 
-	int summ = 0;
+	int summ = 0;//int summ[2000]
 	/*if (strlen(a) < strlen(b)) {
 		char temp[1000];
 		strcpy_s(temp, a);
