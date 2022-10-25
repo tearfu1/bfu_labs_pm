@@ -13,6 +13,7 @@ void multFunc(int &summ,char a[], char b[]) {
 	}
 }
 //Void printFunc
+//Void normChunk
 int main() {
 	char a[1000];
 	char b[1000];
