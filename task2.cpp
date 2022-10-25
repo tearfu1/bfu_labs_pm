@@ -24,12 +24,12 @@ int main() {
 	std::cin >> b;
 
 	int summ = 0;
-	if (strlen(a) < strlen(b)) {
+	/*if (strlen(a) < strlen(b)) {
 		char temp[1000];
 		strcpy_s(temp, a);
 		strcpy_s(a, b);
 		strcpy_s(b, temp);
-	}
+	}*/
 	if (proc == '+') {
 		char one[2] = { '1', '\0' };
 		multFunc(summ, a, one);
