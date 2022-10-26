@@ -5,11 +5,12 @@
 #include <Windows.h>
 int main()
 {
+    //для корректной работы следует сохранить input.txt в кодировке ANSI
     std::string path = "input.txt";
     std::fstream fs;
     std::map<char, int>alph;
     setlocale(LC_CTYPE, "Russian");
-
+    //чтение из файла, подсчет количетсва встреч букв в файле
     fs.open(path, std::fstream::in);
     while (!fs.eof()) {
         std::string msg;
@@ -27,7 +28,7 @@ int main()
     }
     fs.close();
 
-
+    //нахождение восьми наиболее встречаемых
     char temp;
     std::string mc_let;
     for (int i = 0; i < 8;++i) {
@@ -41,7 +42,7 @@ int main()
         mc_let += temp;
         alph.erase(temp);
     }
-    
+    //проверка по заданию
     std::map<std::string, std::string> ans;
     fs.open(path, std::fstream::in);
     while (!fs.eof()) {
@@ -60,7 +61,7 @@ int main()
         }
     }
     fs.close();
-
+    //вывод
     path = "output.txt";
     fs.open(path, std::fstream::out);
     for (auto now : ans) {
