@@ -1,10 +1,9 @@
 ﻿#include <iostream>
 #include <vector>
 #include <string>
-#include "readFunc.h"
-#include "procFunc.h"
-#include "writeFunc.h"
+#include "AllFunc.h"
 
+using namespace Func;
 int main()
 {
     //путь на файл с матрицей и колич

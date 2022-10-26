@@ -313,7 +313,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AllFunc.cpp" />
     <ClCompile Include="F:\bfu\bfu_labs_pm\laba7\laba6.cpp" />
+    <ClInclude Include="AllFunc.h" />
     <ClInclude Include="F:\bfu\bfu_labs_pm\laba7\inc\procFunc.h" />
     <ClInclude Include="F:\bfu\bfu_labs_pm\laba7\inc\readFunc.h" />
     <ClInclude Include="F:\bfu\bfu_labs_pm\laba7\inc\writeFunc.h" />

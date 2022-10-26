@@ -13,11 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 include_directories("inc/")			 # указываем, где искать файлы заголовков
 
 add_executable("${PROJECT_NAME}" laba6.cpp
-								 inc/procFunc.h
-								 inc/readFunc.h
-								 inc/writeFunc.h
-								 src/procFunc.cpp
-								 src/readFunc.cpp
-								 src/writeFunc.cpp)	# добавить исполняемый файл
-file(COPY test.txt DESTINATION "/")	# скопировать файл text.txt в корневую папку проекта
+								 inc/AllFunc.h
+								 src/AllFunc.cpp)	# добавить исполняемый файл
 								 
+file(COPY test.txt DESTINATION "/")	# скопировать файл text.txt в корневую папку проекта

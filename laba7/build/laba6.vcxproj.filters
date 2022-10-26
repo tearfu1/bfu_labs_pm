@@ -13,6 +13,7 @@
     <ClCompile Include="F:\bfu\bfu_labs_pm\laba7\src\writeFunc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AllFunc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="F:\bfu\bfu_labs_pm\laba7\inc\procFunc.h">
@@ -22,6 +23,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="F:\bfu\bfu_labs_pm\laba7\inc\writeFunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AllFunc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
