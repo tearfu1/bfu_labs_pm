@@ -1,3 +1,0 @@
-F:/bfu/bfu_labs_pm/laba7/build/CMakeFiles/laba6.dir
-F:/bfu/bfu_labs_pm/laba7/build/CMakeFiles/ALL_BUILD.dir
-F:/bfu/bfu_labs_pm/laba7/build/CMakeFiles/ZERO_CHECK.dir
