@@ -72,6 +72,7 @@ int main()
         fs << temp << " " << "(" << now.second << ")";
         fs << std::endl;
     }
+    fs.close();
     return 0;
 }
 
