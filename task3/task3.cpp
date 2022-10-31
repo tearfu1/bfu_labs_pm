@@ -3,14 +3,14 @@
 #include <string>
 #include <map>
 #include <Windows.h>
+#include <vector>
 int main()
 {
-    //для корректной работы следует сохранить input.txt в кодировке ANSI
     std::string path = "input.txt";
     std::fstream fs;
     std::map<char, int>alph;
     setlocale(LC_CTYPE, "Russian");
-    //чтение из файла, подсчет количетсва встреч букв в файле
+
     fs.open(path, std::fstream::in);
     while (!fs.eof()) {
         std::string msg;
@@ -28,7 +28,7 @@ int main()
     }
     fs.close();
 
-    //нахождение восьми наиболее встречаемых
+
     char temp;
     std::string mc_let;
     for (int i = 0; i < 8;++i) {
@@ -42,7 +42,7 @@ int main()
         mc_let += temp;
         alph.erase(temp);
     }
-    //проверка по заданию
+    
     std::map<std::string, std::string> ans;
     fs.open(path, std::fstream::in);
     while (!fs.eof()) {
@@ -57,12 +57,16 @@ int main()
             }
         }
         if (temp.length() >= 5) {
-            ans[msg] = temp;
+            std::string temp_upper = msg;
+            for (int i = 0; i < temp_upper.length(); ++i) {
+                temp_upper[i] = toupper(temp_upper[i]);
+            }
+            ans[temp_upper] = temp;
         }
     }
     fs.close();
-    //вывод
-    path = "output.txt";
+
+   /* path = "output.txt";
     fs.open(path, std::fstream::out);
     for (auto now : ans) {
         std::string temp = now.first;
@@ -71,6 +75,45 @@ int main()
         }
         fs << temp << " " << "(" << now.second << ")";
         fs << std::endl;
+    }*/
+
+    std::string tmp;
+
+    std::vector <std::string> text;
+    fs.open(path, std::fstream::in);
+    while (!fs.eof()) {
+        std::getline(fs, tmp);
+        text.push_back(tmp);
+    }
+    fs.close();
+    path = "output.txt";
+    //std::string exam = "WQER";
+    fs.open(path, std::fstream::out);
+    int last_change = 0;
+    for (int i = 0; i < text.size(); ++i) {
+        std::string msg;
+        tmp = "";
+        msg = text[i];
+        for (int j = 0; j < text[i].length(); ++j) {
+            if (text[i][j] != ' ') {
+                tmp += std::toupper(text[i][j]);
+            }
+            else {
+                tmp = "";
+            }
+            if (ans.find(tmp) != ans.end()) {
+                std::string temp_msg = msg;
+                msg = temp_msg.substr(0, last_change + j - tmp.length() + 1);
+                if (msg != "") {
+                    msg += " ";
+                }
+                msg += ans.find(tmp)->first + " " + "(" + ans.find(tmp)->second + ")" + " ";
+                msg += temp_msg.substr(j + last_change + 2, temp_msg.length());
+                last_change += ans.find(tmp)->second.length() + 2;
+                tmp = "";
+            }
+        }
+        fs << msg << std::endl;
     }
     fs.close();
     return 0;
