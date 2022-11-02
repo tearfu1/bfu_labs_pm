@@ -5,6 +5,7 @@
 #include "procFunc.h"
 #include "writeFunc.h"
 
+using namespace FuncNS;
 int main()
 {
     //путь на файл с матрицей и колич
