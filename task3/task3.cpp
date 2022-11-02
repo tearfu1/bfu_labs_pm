@@ -21,7 +21,7 @@ int main()
             if (alph.find(t) != alph.end()) {
                 alph[t] += 1;
             }
-            else if(t >= 'А' && t <= 'Я') {
+            else if (t >= 'А' && t <= 'Я') {
                 alph[t] = 1;
             }
         }
@@ -31,9 +31,9 @@ int main()
 
     char temp;
     std::string mc_let;
-    for (int i = 0; i < 8;++i) {
+    for (int i = 0; i < 8; ++i) {
         int maxim = 0;
-        for (auto n:alph) {
+        for (auto n : alph) {
             if (n.second > maxim) {
                 maxim = n.second;
                 temp = n.first;
@@ -42,7 +42,7 @@ int main()
         mc_let += temp;
         alph.erase(temp);
     }
-    
+
     std::map<std::string, std::string> ans;
     fs.open(path, std::fstream::in);
     while (!fs.eof()) {
@@ -65,18 +65,6 @@ int main()
         }
     }
     fs.close();
-
-   /* path = "output.txt";
-    fs.open(path, std::fstream::out);
-    for (auto now : ans) {
-        std::string temp = now.first;
-        for (int i = 0; i < temp.length(); ++i) {
-            temp[i] = toupper(temp[i]);
-        }
-        fs << temp << " " << "(" << now.second << ")";
-        fs << std::endl;
-    }*/
-
     std::string tmp;
 
     std::vector <std::string> text;
@@ -87,12 +75,11 @@ int main()
     }
     fs.close();
     path = "output.txt";
-    //std::string exam = "WQER";
     fs.open(path, std::fstream::out);
-    int last_change = 0;
     for (int i = 0; i < text.size(); ++i) {
         std::string msg;
         tmp = "";
+        int last_change = 0;
         msg = text[i];
         for (int j = 0; j < text[i].length(); ++j) {
             if (text[i][j] != ' ') {
@@ -103,12 +90,9 @@ int main()
             }
             if (ans.find(tmp) != ans.end()) {
                 std::string temp_msg = msg;
-                msg = temp_msg.substr(0, last_change + j - tmp.length() + 1);
-                if (msg != "") {
-                    msg += " ";
-                }
-                msg += ans.find(tmp)->first + " " + "(" + ans.find(tmp)->second + ")" + " ";
-                msg += temp_msg.substr(j + last_change + 2, temp_msg.length());
+                msg = temp_msg.substr(0, last_change + j - tmp.length() +1);
+                msg += ans.find(tmp)->first + "(" + ans.find(tmp)->second + ")";
+                msg += temp_msg.substr(j + last_change + 1, temp_msg.length());
                 last_change += ans.find(tmp)->second.length() + 2;
                 tmp = "";
             }
@@ -118,4 +102,3 @@ int main()
     fs.close();
     return 0;
 }
-
