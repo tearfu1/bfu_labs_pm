@@ -1,1 +1,1 @@
-# labs with tasks from mrBelka's reposetory 
+# labs and tasks from mrBelka's reposetory 
