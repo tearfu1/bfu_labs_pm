@@ -29,10 +29,28 @@ class Triangle{
         }
         m_third_side = tSide;
     }
+    bool isReal() {
+        if(m_first_side + m_second_side < m_third_side) {
+            std::cout << "Error: this triangle does not exist" << std::endl;
+            return false;
+        }
+        else if(m_first_side + m_third_side < m_second_side) {
+            std::cout << "Error: this triangle does not exist" << std::endl;
+            return false;
+        }
+        else if(m_third_side + m_second_side < m_first_side) {
+            std::cout << "Error: this triangle does not exist" << std::endl;
+            return false;
+        }
+    }
+
     double area(){
         double hPer = (m_first_side + m_second_side + m_third_side)/2;
-        double area_sq = hPer * (hPer - m_first_side) * (hPer - m_first_side) * (hPer - m_first_side);
-        return pow(area_sq,0.5);
+        double p1 = hPer - m_first_side;
+        double p2 = hPer - m_second_side;
+        double p3 = hPer - m_third_side;
+        double area_size = p1*p2*p3*hPer;
+        return pow(area_size,0.5);
     }
     ~Triangle() = default;
 
@@ -45,7 +63,8 @@ int main(){
     first.SetFirstSide(a);
     first.SetSecondSide(b);
     first.SetThirdSide(c);
-    std::cout << "The area of a triangle: " << first.area();
-
+    if (first.isReal()) {
+        std::cout << "The area of a triangle: " << first.area();
+    }
     return 0;
 }
