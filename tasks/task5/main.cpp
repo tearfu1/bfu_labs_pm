@@ -77,7 +77,7 @@ class newV{
         normSize(m_currLen);
         int* temp = vec;
         vec = new int[m_memSize];
-        for(int i = 0; i < m_currLen+1; ++i){
+        for(int i = 0; i < m_currLen; ++i){
             if(i < userIndex){
                 vec[i] = temp[i];
             }
@@ -90,7 +90,9 @@ class newV{
         }
         delete[] temp;
     }
-    ~newV() = default;
+    ~newV(){
+        delete[] vec;
+    };
 };
 
 int main(){
