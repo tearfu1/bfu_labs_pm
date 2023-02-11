@@ -5,18 +5,24 @@
 template <typename InputIt,typename OutputIt>
 void custom_copy(InputIt begin, InputIt end, OutputIt d_begin){
     int plus = 8/sizeof(*begin);
-        while(begin<end-1){
-            auto src = (long long*)begin;
-            auto point = (long long*)d_begin;
-            *point = *src;
-            begin+=plus;
-            d_begin+=plus;
-        }
+    int div = (end-begin)/plus;//целая часть от деления, для машинных слов
+    int mod = (end-begin)%plus;//остаток от деления, для оставшихся элементов
+
+    for(int i =0;i < div;i+=1){
+        auto src = (long long*)(begin);
+        auto point = (long long*)(d_begin);
+        *point = *src;
+        begin+=plus;
+        d_begin+=plus;
     }
+    for(int i = 0;i < mod;++i){
+        *(d_begin+i) = *(begin+i);
+    }
+}
 
 
 int main(){
-    const int n = 10;
+    const int n = 23;
     char mas [n];
     char mas2 [n];
     for (int i = 0; i < n; ++i){
