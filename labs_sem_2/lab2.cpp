@@ -1,5 +1,5 @@
-/* осталось сдлеать пункты 6 7 8 9 11 12, сделай за раз пж */
 #include <iostream>
+#include <cstring>
 
 class String
 {
@@ -31,19 +31,13 @@ public:
 	String(const String& other) : String(other.m_str) 
 	{
 	}
-	int strcmp(const String& A, const String& B)
+	int find(char c)
 	{
-		int sum = 0;
-		size_t minim = (A.m_size <= B.m_size)*A.m_size + (A.m_size > B.m_size)*B.m_size;
-		for(int i = 0; i < minim; ++i)
+		for(int i = 0; i < m_size; ++i)
 		{
-			std::cout<<(int)A.m_str[i] << " " << (int)B.m_str[i]<<std::endl;
-			sum = (int)A.m_str[i] - (int)B.m_str[i];
-
-			std::cout << sum;
-		}	
-			std::cout << sum;
-		return sum;
+			if (m_str[i] == c) return i;
+		}
+		return -1;
 	}
 	String& operator=(String temp)
 	{
@@ -72,17 +66,17 @@ public:
 	}
 	bool operator < (const String& other)
 	{
-        return strcmp(*this, other) < 0;
+		return std::strcmp(this->m_str, other.m_str) < 0;
     }
 
     bool operator > (const String& other) 
 	{
-        return strcmp(*this, other) > 0;
+		return std::strcmp(this->m_str, other.m_str) > 0;
     }
 
     bool operator == (const String& other) 
 	{
-		return strcmp(*this, other) == 0;
+		return std::strcmp(this->m_str, other.m_str) == 0;
     }
 
 	size_t length()
@@ -97,7 +91,7 @@ public:
 	{
 		return m_str[index];
 	}
-	char at(int index)
+char at(int index)
 	{
 		if(0 <= index && index < m_size)
 		{
@@ -105,14 +99,7 @@ public:
 		}
 		return 0;
 	}
-	int find(char c)
-	{
-		for(int i = 0; i < m_size; ++i)
-		{
-			if (m_str[i] == c) return i;
-		}
-		return -1;
-	}
+
 	~String()
 	{
 		if(m_str != nullptr) delete[] m_str;
