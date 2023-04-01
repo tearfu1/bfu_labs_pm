@@ -26,8 +26,13 @@ public:
     }
     Complex& operator*=(const Complex& z)
     {
-        (*this).real = (*this).real * z.real - (*this).img * z.img;
-        (*this).img = (*this).real * z.img + (*this).img * z.real;
+        double temp_real, temp_img;
+        temp_real = (*this).real * z.real - (*this).img * z.img;
+        temp_img = (*this).real * z.img + (*this).img * z.real;
+
+        (*this).img = temp_img;
+        (*this).real = temp_real;
+
         return *this;
     }
     Complex& operator++()
@@ -63,4 +68,14 @@ std::ostream& operator<<(std::ostream& out, const Complex& z)
 std::istream& operator>>(std::istream& in, Complex& z)
 {
     in >> z.real >> z.img;
+}
+
+int main()
+{
+    Complex z1(1,1);
+    Complex z2(2,2);
+    Complex z3 = z1*z2;
+    std::cout << z1 << " " << z2 << " " << z3;
+
+    return 0;
 }
