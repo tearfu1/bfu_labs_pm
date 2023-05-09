@@ -144,7 +144,7 @@ public:
         *this = temp;
         return *this;
     }
-    Matrix& operator++(int)
+    Matrix operator++(int)
     {
         Matrix temp = *this;
         int cnt = 0;
