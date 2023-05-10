@@ -1,5 +1,5 @@
 ﻿#include <SFML/Graphics.hpp>
-#include "../build/KS.h"
+#include "KS.h"
 
 int main()
 {
