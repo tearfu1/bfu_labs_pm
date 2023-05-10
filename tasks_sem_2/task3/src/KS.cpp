@@ -53,8 +53,8 @@ double KinematicSolver::Solve(double x, double y)
 		float cosAngle1 = ((len_L2 * len_L2) + (len_L1 * len_L1) - (len_L3 * len_L3)) / (2 * len_L2 * len_L1);
 		float angle1 = acos(cosAngle1) * 180 / acos(-1);
 
-		this->jointAngle0 = abs(angle2 - angle0);	// Óãîë A
-		this->jointAngle1 = 180.f - angle1;	// Óãîë B
+		this->jointAngle0 = angle2 - angle0;	// Ã“Ã£Ã®Ã« A
+		this->jointAngle1 = 180.f - angle1;	// Ã“Ã£Ã®Ã« B
 	}
 	
 	return 0.0;
