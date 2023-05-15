@@ -20,6 +20,7 @@ public:
 		catch (const std::bad_alloc& e) 
 		{
 			std::cout << "Allocation failed: " << e.what() << std::endl;
+			exit(1);
 		}
 		
 	}
@@ -49,6 +50,7 @@ public:
 		}
 		catch (const char* error) {
 			std::cerr << error << std::endl;
+			exit(2);
 		}
 	}
 	T pop()
@@ -66,6 +68,7 @@ public:
 		}
 		catch (const char* error) {
 			std::cerr << error << std::endl;
+			exit(3);
 		}
 	}
 	T top()
@@ -80,6 +83,7 @@ public:
 		}
 		catch (const char* error) {
 			std::cerr << error << std::endl;
+			exit(4);
 		}
 	}
 	~Stack()
