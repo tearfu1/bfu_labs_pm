@@ -10,7 +10,7 @@ protected:
 	int coord_y = 0;
 public:
 	virtual double Area() = 0;
-	virtual void setPosition(int& x, int& y) {
+	void setPosition(int& x, int& y) {
 		this->coord_x = x;
 		this->coord_y = x;
 	}
