@@ -1,8 +1,9 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 
-class Device 
+class Device
 {
 protected:
 	std::string m_name;
@@ -11,34 +12,55 @@ public:
 	{
 		this->m_name = name;
 	}
-	virtual void poll() {
-		std::cout << m_name<<std::endl;
-	}
-	virtual ~Device(){}
+	virtual void poll() = 0;
+	virtual ~Device() {}
 };
 class ElectricityMeter : public Device
 {
 public:
-	explicit ElectricityMeter(const std::string& name) : Device(name){}
+	explicit ElectricityMeter(const std::string& name) : Device(name) {}
+	void poll() override
+	{
+		std::cout << this->m_name << std::endl;
+	}
 };
 class DSIBlock : public Device
 {
 public:
 	explicit DSIBlock(const std::string& name) : Device(name) {}
+	void poll() override
+	{
+		std::cout << this->m_name << std::endl;
+	}
 };
 class HeatControlBlock : public Device
 {
 public:
 	explicit HeatControlBlock(const std::string& name) : Device(name) {}
+	void poll() override
+	{
+		std::cout << this->m_name << std::endl;
+	}
 };
 
 
-struct  {
-	ElectricityMeter* em = nullptr;
-	DSIBlock* dsi = nullptr;
-	HeatControlBlock* hc = nullptr;
+struct {
+private:
+	std::vector<Device*> m_devices;
+public:
+	void pollAll()
+	{
+		for (auto n : m_devices)
+		{
+			n->poll();
+		}
+	}
+	void setDevice(Device* newDevices)
+	{
+		m_devices.push_back(newDevices);
+	}
 }Configuration;
-namespace DeviceBase 
+namespace DeviceBase
 {
 	std::string EMs[] = {
 		"Меркурий 230", "Нева МТ314", "Энергомера CE308"
@@ -56,7 +78,7 @@ int main() {
 	setlocale(LC_ALL, "ru");
 	std::fstream f("conf.txt");
 	std::string currDevice;
-	
+
 	while (getline(f, currDevice))
 	{
 		int n = sizeof(DeviceBase::EMs) / sizeof(std::string);
@@ -64,8 +86,8 @@ int main() {
 		{
 			if (DeviceBase::EMs[i] == currDevice)
 			{
-				ElectricityMeter *EM = new ElectricityMeter(currDevice);
-				Configuration.em = EM;
+				ElectricityMeter* EM = new ElectricityMeter(currDevice);
+				Configuration.setDevice(EM);
 			}
 		}
 		n = sizeof(DeviceBase::DSIs) / sizeof(std::string);
@@ -74,7 +96,7 @@ int main() {
 			if (DeviceBase::DSIs[i] == currDevice)
 			{
 				DSIBlock* DSI = new DSIBlock(currDevice);
-				Configuration.dsi = DSI;
+				Configuration.setDevice(DSI);
 			}
 		}
 		n = sizeof(DeviceBase::HCs) / sizeof(std::string);
@@ -83,12 +105,10 @@ int main() {
 			if (DeviceBase::HCs[i] == currDevice)
 			{
 				HeatControlBlock* HC = new HeatControlBlock(currDevice);
-				Configuration.hc = HC;
+				Configuration.setDevice(HC);
 			}
 		}
 	}
-	Configuration.em->poll();
-	Configuration.dsi->poll();
-	Configuration.hc->poll();
+	Configuration.pollAll();
 	return 0;
 }
