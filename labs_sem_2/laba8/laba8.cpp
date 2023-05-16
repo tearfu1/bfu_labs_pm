@@ -50,7 +50,7 @@ public:
 		}
 		catch (const char* error) {
 			std::cerr << error << std::endl;
-			exit(2);
+			
 		}
 	}
 	T pop()
@@ -68,7 +68,7 @@ public:
 		}
 		catch (const char* error) {
 			std::cerr << error << std::endl;
-			exit(3);
+			
 		}
 	}
 	T top()
